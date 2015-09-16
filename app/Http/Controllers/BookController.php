@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\BookRequest;
+use App\Http\Requests\BookStoreRequest;
 use App\Services\DateService;
 use App\Services\PricingService;
 use Carbon\Carbon;
@@ -38,7 +39,7 @@ class BookController extends Controller
         return view('book.index', compact('pickupDateString', 'returnDateString', 'diffString', 'price'));
     }
 
-    public function store()
+    public function store(BookStoreRequest $request)
     {
 
     }

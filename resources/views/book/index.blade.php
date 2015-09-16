@@ -28,17 +28,15 @@
 
 @section('content')
     <div class="container">
-       <!--  <div class="row mt mb centered">
-            <h1>Available Date</h1>
-
-            <div class="margin-bottom-50"></div>
-
-            <br>
-
-            <div id="calendar"></div>
-        </div> -->
-
         <div class="row mt">
+            @if (count($errors) > 0)
+                <div class="alert alert-danger" role="alert">
+                    @foreach ($errors->all() as $error)
+                        {{ $error }} <br>
+                    @endforeach
+                </div>
+            @endif
+
             <p>Pick-up on {{ $pickupDateString }}</p>
             <p>Return on {{ $returnDateString }} ({{ $diffString }})</p>
             <p>Price: Rp{{ number_format($price) }} </p>
@@ -51,22 +49,26 @@
                 <div class="margin-bottom-50"></div>
 
                 <form method="POST" action="{{ route('book.store') }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
                         <div class="col-sm-12">
                             <label for="name">Name</label>
-                            <input type="text" class="form-control" id="name" name="name">
+                            <input type="text" class="form-control" id="name"
+                                   name="name" value="{{ old('name') }}">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-12">
                             <label for="phone">Phone</label>
-                            <input type="text" class="form-control" id="phone" name="phone">
+                            <input type="text" class="form-control" id="phone"
+                                   name="phone" value="{{ old('phone') }}">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-12">
                             <label for="email">Email</label>
-                            <input type="text" class="form-control" id="email" name="email">
+                            <input type="text" class="form-control" id="email"
+                                   name="email" value="{{ old('email') }}">
                         </div>
                     </div>
 
