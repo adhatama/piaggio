@@ -21,28 +21,32 @@ class PricingService {
         return $diffString;
     }
 
-    public function getPriceCalculation($startDate, $endDate)
+    public function getPriceCalculation($startDate, $endDate, $quantity)
     {
         $diff = $startDate->diffInHours($endDate);
 
         if ($diff <= 12) {
-            return Pricing::where('type', 'halfDay')->first();
+            $pricing = Pricing::where('type', 'halfDay')->first();
         } else if ($diff <= 24) {
-            return Pricing::where('type', 'fullDay')->first();
-        } else if ($diff <= 36) {
-            return Pricing::where('type', 'additional1')->first();
+            $pricing = Pricing::where('type', 'fullDay')->first();
         } else if ($diff <= 48) {
-            return Pricing::where('type', 'additional2')->first();
-        } else if ($diff <= 60) {
-            return Pricing::where('type', 'additional3')->first();
+            $pricing = Pricing::where('type', 'additional1')->first();
         } else if ($diff <= 72) {
-            return Pricing::where('type', 'additional4')->first();
-        } else if ($diff <= 84) {
-            return Pricing::where('type', 'additional5')->first();
+            $pricing = Pricing::where('type', 'additional2')->first();
         } else if ($diff <= 96) {
-            return Pricing::where('type', 'weekly')->first();
+            $pricing = Pricing::where('type', 'additional3')->first();
+        } else if ($diff <= 120) {
+            $pricing = Pricing::where('type', 'additional4')->first();
+        } else if ($diff <= 144) {
+            $pricing = Pricing::where('type', 'additional5')->first();
+        } else if ($diff <= 168) {
+            $pricing = Pricing::where('type', 'weekly')->first();
         } else {
-            return Pricing::where('type', 'monthly')->first();
+            $pricing = Pricing::where('type', 'monthly')->first();
         }
+
+        $finalPrice = $pricing->price * $quantity;
+
+        return $finalPrice;
     }
 }

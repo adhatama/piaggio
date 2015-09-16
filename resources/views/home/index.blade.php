@@ -18,22 +18,34 @@
                         <h2>MEET BAGGIO!</h2>
 
                         <form class="date-form" action="{{ route('book.index') }}" method="GET">
+                            @if (count($errors) > 0)
+                                <div class="alert alert-danger" role="alert">
+                                    @foreach ($errors->all() as $error)
+                                        {{ $error }} <br>
+                                    @endforeach
+                                </div>
+                            @endif
+
                             <div class="form-group input-daterange input-group" id="datepicker">
                                 <div class="col-sm-6">
                                     <label for="howMany">Pickup</label>
-                                    <input type="text" class="form-control" name="pickupDate"/>
+                                    <input type="text" class="form-control" name="pickupDate"
+                                           value="{{ $nowString }}"/>
                                     <select class="form-control" name="pickupTime">
-                                        <option value="10">10.00</option>
-                                        <option value="11">11.00</option>
+                                        @for($i = 10; $i <= 21; $i++)
+                                            <option value="{{ $i }}">{{ $i }}:00</option>
+                                        @endfor
                                     </select>
                                 </div>
 
                                 <div class="col-sm-6">
                                     <label for="howMany">Return</label>
-                                    <input type="text" class="form-control" name="returnDate"/>
+                                    <input type="text" class="form-control" name="returnDate"
+                                            value="{{ $tomorrowString }}"/>
                                     <select class="form-control" name="returnTime">
-                                        <option value="10">10.00</option>
-                                        <option value="11">11.00</option>
+                                        @for($i = 10; $i <= 21; $i++)
+                                            <option value="{{ $i }}">{{ $i }}:00</option>
+                                        @endfor
                                     </select>
                                 </div>
                             </div>
@@ -41,7 +53,7 @@
                             <div class="form-group">
                                 <div class="col-sm-12">
                                     <label for="howMany">How Many Vespa?</label>
-                                    <input type="text" class="form-control" id="howMany">
+                                    <input type="text" class="form-control" id="howMany" name="quantity">
                                 </div>
                             </div>
 

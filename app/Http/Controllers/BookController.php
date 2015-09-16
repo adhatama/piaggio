@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BookRequest;
 use App\Services\DateService;
 use App\Services\PricingService;
 use Carbon\Carbon;
@@ -15,7 +16,7 @@ use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
-    public function index(Request $request, PricingService $pricingService, DateService $dateService)
+    public function index(BookRequest $request, PricingService $pricingService, DateService $dateService)
     {
         $pickupDate = Carbon::createFromFormat(
             'd/m/Y H',
@@ -32,9 +33,9 @@ class BookController extends Controller
         $diffString = $pricingService->getDateDiffString($pickupDate, $returnDate);
 
         // Calculate Price
-        $pricing = $pricingService->getPriceCalculation($pickupDate, $returnDate);
-        
-        return view('book.index', compact('pickupDateString', 'returnDateString', 'diffString', 'pricing'));
+        $price = $pricingService->getPriceCalculation($pickupDate, $returnDate, $request->quantity);
+
+        return view('book.index', compact('pickupDateString', 'returnDateString', 'diffString', 'price'));
     }
 
     public function store()

@@ -9,10 +9,18 @@
 namespace App\Http\Controllers;
 
 
+use Carbon\Carbon;
+
 class HomeController extends Controller
 {
     public function index()
     {
-        return view('home.index');
+        $now = Carbon::now();
+        $tomorrow = Carbon::tomorrow();
+
+        $nowString = $now->format('d/m/Y');
+        $tomorrowString = $tomorrow->format('d/m/Y');
+
+        return view('home.index', compact('nowString', 'tomorrowString'));
     }
 }

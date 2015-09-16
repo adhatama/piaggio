@@ -41,7 +41,7 @@
         <div class="row mt">
             <p>Pick-up on {{ $pickupDateString }}</p>
             <p>Return on {{ $returnDateString }} ({{ $diffString }})</p>
-            <p>Price: Rp{{ number_format($pricing->price) }} </p>
+            <p>Price: Rp{{ number_format($price) }} </p>
         </div>
 
         <div class="row mt mb">
