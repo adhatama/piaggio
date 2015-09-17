@@ -10,6 +10,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\BookRequest;
 use App\Http\Requests\BookStoreRequest;
+use App\Models\BookingHistory;
+use App\Models\Vespa;
 use App\Services\DateService;
 use App\Services\PricingService;
 use Carbon\Carbon;
@@ -34,18 +36,44 @@ class BookController extends Controller
         $diffString = $pricingService->getDateDiffString($pickupDate, $returnDate);
 
         // Calculate Price
-        $price = $pricingService->getPriceCalculation($pickupDate, $returnDate, $request->quantity);
+        $price = $pricingService->getPriceCalculation($pickupDate, $returnDate, $request->input('quantity'));
 
-        return view('book.index', compact('pickupDateString', 'returnDateString', 'diffString', 'price'));
+        $quantity = $request->input('quantity');
+
+        return view('book.index', compact(
+            'pickupDate', 'returnDate',
+            'pickupDateString', 'returnDateString',
+            'diffString', 'price', 'quantity'));
     }
 
     public function store(BookStoreRequest $request)
     {
+        $vespas = $request->input('vespa');
+        $vespasName = [];
 
+        foreach($vespas as $vespa) {
+            $v = Vespa::find($vespa);
+            $v->status = 1;
+            $v->save();
+
+            array_push($vespasName, $v->name);
+        }
+
+        BookingHistory::create([
+            'name' => $request->input('name'),
+            'phone' => $request->input('phone'),
+            'email' => $request->input('email'),
+            'vespa' => json_encode($vespasName),
+            'pickup_date' => $request->input('pickupDate'),
+            'return_date' => $request->input('returnDate'),
+            'quantity' => $request->input('quantity')
+        ]);
+
+        return redirect()->route('book.thankyou');
     }
 
     public function thankyou()
     {
-
+        return view('book.thankyou');
     }
 }

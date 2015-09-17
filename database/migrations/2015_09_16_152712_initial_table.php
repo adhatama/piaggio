@@ -29,6 +29,15 @@ class InitialTable extends Migration
             $table->string('phone');
             $table->string('email');
             $table->integer('price');
+            $table->string('vespa', 255);
+            $table->timestamps();
+        });
+
+        Schema::create('vespa', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('code');
+            $table->string('name');
+            $table->integer('status');
             $table->timestamps();
         });
     }
@@ -42,5 +51,6 @@ class InitialTable extends Migration
     {
         Schema::drop('pricing');
         Schema::drop('booking_history');
+        Schema::drop('vespa');
     }
 }

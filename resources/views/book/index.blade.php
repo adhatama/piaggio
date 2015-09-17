@@ -50,6 +50,10 @@
 
                 <form method="POST" action="{{ route('book.store') }}">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <input type="hidden" name="pickupDate" value="{{ $pickupDate }}">
+                    <input type="hidden" name="returnDate" value="{{ $returnDate }}">
+                    <input type="hidden" name="quantity" value="{{ $quantity }}">
+
                     <div class="form-group">
                         <div class="col-sm-12">
                             <label for="name">Name</label>
@@ -86,7 +90,7 @@
                         <div class="thumbnail">
                             <img src="{{ url('img/vespa1-1.jpg') }}" class="img-responsive vespa">
                             <div class="caption">
-                                <input type="checkbox" name="vespa" id="vespa-1" class="vespa-checkbox"> &nbsp
+                                <input type="checkbox" name="vespa[]" value="1" id="vespa-1" class="vespa-checkbox"> &nbsp
                                 <h3 style="display: inline">Vespa PX-156</h3>
                             </div>
                         </div>
@@ -96,7 +100,7 @@
                         <div class="thumbnail">
                             <img src="{{ url('img/vespa1-1.jpg') }}" class="img-responsive vespa">
                             <div class="caption">
-                                <input type="checkbox" name="vespa" id="vespa-2" class="vespa-checkbox"> &nbsp
+                                <input type="checkbox" name="vespa[]" value="2" id="vespa-2" class="vespa-checkbox"> &nbsp
                                 <h3 style="display: inline">Vespa PX-156</h3>
                             </div>
                         </div>

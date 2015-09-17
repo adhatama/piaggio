@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
 
         $this->call(PricingSeeder::class);
+        $this->call(VespaSeeder::class);
 
         Model::reguard();
     }
