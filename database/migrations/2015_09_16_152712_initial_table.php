@@ -30,6 +30,7 @@ class InitialTable extends Migration
             $table->string('email');
             $table->integer('price');
             $table->string('vespa', 255);
+            $table->integer('status');
             $table->timestamps();
         });
 

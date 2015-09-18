@@ -15,4 +15,7 @@ Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
 Route::resource('book', 'BookController');
 
+Route::get('bookingHistory/approve', ['as' => 'bookingHistory.approve', 'uses' => 'BookingHistoryController@approve']);
+Route::resource('bookingHistory', 'BookingHistoryController');
+
 Route::get('thankyou', ['as' => 'book.thankyou', 'uses' => 'BookController@thankyou']);

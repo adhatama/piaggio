@@ -21,17 +21,17 @@ class BookController extends Controller
 {
     public function index(BookRequest $request, PricingService $pricingService, DateService $dateService)
     {
-        $pickupDate = Carbon::createFromFormat(
-            'd/m/Y H',
-            $request->input('pickupDate') . ' ' . $request->input('pickupTime')
+        $pickupDate = $dateService->getCarbonDateFromDateString(
+            $request->input('pickupDate') . ' ' . $request->input('pickupTime') . ':00:00',
+            'd/m/Y H:i:s'
         );
-        $pickupDateString = $dateService->getDateFormat($pickupDate);
+        $pickupDateString = $pickupDate->format('l, jS \\of F Y h:i A');
 
-        $returnDate = Carbon::createFromFormat(
-            'd/m/Y H',
-            $request->input('returnDate') . ' ' . $request->input('returnTime')
+        $returnDate = $dateService->getCarbonDateFromDateString(
+            $request->input('returnDate') . ' ' . $request->input('returnTime') . ':00:00',
+            'd/m/Y H:i:s'
         );
-        $returnDateString = $dateService->getDateFormat($returnDate);
+        $returnDateString = $returnDate->format('l, jS \\of F Y h:i A');
 
         $diffString = $pricingService->getDateDiffString($pickupDate, $returnDate);
 
@@ -46,8 +46,17 @@ class BookController extends Controller
             'diffString', 'price', 'quantity'));
     }
 
-    public function store(BookStoreRequest $request)
+    public function store(BookStoreRequest $request, DateService $dateService, PricingService $pricingService)
     {
+//        dd($request->input());
+        $pickupDate = $dateService->getCarbonDateFromDateString($request->input('pickupDate'), 'Y-m-d H:i:s');
+//        dd($pickupDate);
+
+        $returnDate = $dateService->getCarbonDateFromDateString($request->input('returnDate'), 'Y-m-d H:i:s');
+
+        // Calculate Price
+        $price = $pricingService->getPriceCalculation($pickupDate, $returnDate, $request->input('quantity'));
+
         $vespas = $request->input('vespa');
         $vespasName = [];
 
@@ -64,9 +73,10 @@ class BookController extends Controller
             'phone' => $request->input('phone'),
             'email' => $request->input('email'),
             'vespa' => json_encode($vespasName),
-            'pickup_date' => $request->input('pickupDate'),
-            'return_date' => $request->input('returnDate'),
-            'quantity' => $request->input('quantity')
+            'pickup_time' => $request->input('pickupDate'),
+            'return_time' => $request->input('returnDate'),
+            'quantity' => $request->input('quantity'),
+            'price' => $price
         ]);
 
         return redirect()->route('book.thankyou');
