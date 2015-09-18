@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BookingHistory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class BookingHistoryController extends Controller
 {
@@ -27,6 +28,21 @@ class BookingHistoryController extends Controller
         $bookingHistory = BookingHistory::findOrFail($request->input('id'));
         $bookingHistory->status = 1;
         $bookingHistory->save();
+
+        $data = [
+            'name' => $bookingHistory->name,
+            'phone' => $bookingHistory->phone,
+            'email' => $bookingHistory->email,
+            'pickupDate' => $bookingHistory->getPickupTimeString(),
+            'returnDate' => $bookingHistory->getReturnTimeString(),
+            'price' => $bookingHistory->price,
+        ];
+
+        Mail::send('emails.approval', $data, function ($message) {
+            $message->subject('Your Vespa Booking Has Been Approved');
+            $message->from(env('SENDER_EMAIl'), 'Vespa');
+            $message->to('akbar@javan.co.id');
+        });
 
         return redirect()->route('bookingHistory.index');
     }
