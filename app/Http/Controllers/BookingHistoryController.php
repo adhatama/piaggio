@@ -16,7 +16,7 @@ class BookingHistoryController extends Controller
 {
     public function index()
     {
-        $bookingHistories = BookingHistory::orderBy('created_at', 'desc')->paginate(3);
+        $bookingHistories = BookingHistory::orderBy('created_at', 'desc')->paginate(15);
         $bookingHistories->setPath('bookingHistory');
 
         return view('bookingHistory.index', compact('bookingHistories'));
