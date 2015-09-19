@@ -29,7 +29,7 @@
                             <th>Pickup Time</th>
                             <th>Return Time</th>
                             <th>Total Price</th>
-                            <th>Booking At</th>
+                            <th>Vespa</th>
                             <th></th>
                         </tr>
                     </thead>
