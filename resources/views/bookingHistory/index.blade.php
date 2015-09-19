@@ -40,7 +40,7 @@
                                 <td>{{ $bk->getPickupTimeString() }}</td>
                                 <td>{{ $bk->getReturnTimeString() }}</td>
                                 <td>{{ number_format($bk->price) }}</td>
-                                <td>{{ $bk->getCreatedAtString() }}</td>
+                                <td>{!! $bk->getVespaString() !!}</td>
                                 <td>
                                     @if($bk->status == 0)
                                         <a href="{{ route('bookingHistory.approve', ['id'=>$bk->id]) }}" class="btn btn-success">Approve</a>

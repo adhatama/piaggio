@@ -41,4 +41,9 @@ class BookingHistory extends Model
 
         return $carbonDate->format('d-m-Y H:i:s');
     }
+
+    public function getVespaString()
+    {
+        return implode('<br>', json_decode($this->vespa));
+    }
 }
