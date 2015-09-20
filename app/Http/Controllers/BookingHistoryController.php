@@ -38,11 +38,11 @@ class BookingHistoryController extends Controller
             'price' => $bookingHistory->price,
         ];
 
-        Mail::send('emails.approval', $data, function ($message) {
-            $message->subject('Your Vespa Booking Has Been Approved');
-            $message->from(env('SENDER_EMAIl'), 'Vespa');
-            $message->to('akbar@javan.co.id');
-        });
+//        Mail::send('emails.approval', $data, function ($message) {
+//            $message->subject('Your Vespa Booking Has Been Approved');
+//            $message->from(env('SENDER_EMAIl'), 'Vespa');
+//            $message->to('akbar@javan.co.id');
+//        });
 
         return redirect()->route('bookingHistory.index');
     }
