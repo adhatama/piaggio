@@ -1,0 +1,87 @@
+body {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+}
+
+body p,
+body th,
+body td {
+    font-size: 18px;
+}
+
+.navbar.navbar-default {
+    background-color: transparent;
+    border-color: transparent;
+    margin-bottom: 0px;
+}
+
+.main-title {
+    font-family: 'Spinnaker', sans-serif;
+}
+
+h2.main-title {
+    margin-top: 0px;
+}
+
+.container.header {
+    border: 1px solid black;
+    margin: 0 auto;
+    width: 100%;
+    background-color: #D71920;
+    color: #f5f5f5;
+}
+
+.container.header h3,
+.container.header h2 {
+    text-align: center;
+}
+
+.date-form.well {
+    color: #000000;
+    border-color: transparent;
+}
+
+.centered {
+    text-align: center
+}
+
+.mt {
+    margin-top: 80px;
+}
+
+.mb {
+    margin-bottom: 80px;
+}
+
+.mb-50 {
+    margin-bottom: 50px;
+}
+
+.thumbnail {
+    border: none;
+}
+
+.table thead > tr > th {
+    text-align: center;
+    padding: 20px;
+}
+
+.table tbody > tr > td {
+    text-align: center;
+    padding: 20px;
+}
+
+.table tbody > tr > td.vert-align {
+    vertical-align: middle;
+}
+
+#footerwrap {
+    padding-top: 70px;
+    padding-bottom: 50px;
+    background-color: #D71920;
+}
+
+#footerwrap p {
+    color: #f5f5f5;
+    margin-left: 10px;
+}

@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.main-v2')
 
 @section('style-head')
     @parent
@@ -8,72 +8,80 @@
 
 @section('header')
     <section id="home"></section>
-    <div id="headerwrap">
-        <div class="headerwrap-shadow">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-lg-offset-3">
-                        <div style="margin-top: 90px"></div>
-                        <h3>Scooter Rental in Bandung</h3>
-                        <h2>MEET BAGGIO!</h2>
+    <div class="container header">
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-3">
+                <div class="col-sm-4 col-sm-offset-4">
+                    <img src="{{ url('img/Vespa_LX_3_white.png') }}" class="img-responsive center-block">
+                </div>
 
-                        <form class="date-form" action="{{ route('book.index') }}" method="GET">
-                            @if (count($errors) > 0)
-                                <div class="alert alert-danger" role="alert">
-                                    @foreach ($errors->all() as $error)
-                                        {{ $error }} <br>
-                                    @endforeach
-                                </div>
-                            @endif
+                <div class="clearfix"></div>
 
-                            <div class="form-group input-daterange input-group" id="datepicker">
-                                <div class="col-sm-6">
-                                    <label for="howMany">Pickup</label>
-                                    <input type="text" class="form-control" name="pickupDate"
-                                           value="{{ $nowString }}"/>
-                                    <select class="form-control" name="pickupTime">
-                                        @for($i = 10; $i <= 21; $i++)
-                                            <option value="{{ $i }}">{{ $i }}:00</option>
-                                        @endfor
-                                    </select>
-                                </div>
+                <h2 class="main-title">MEET BAGGIO!</h2>
+                <h3 class="main-title">Scooter Rental in Indonesia</h3>
 
-                                <div class="col-sm-6">
-                                    <label for="howMany">Return</label>
-                                    <input type="text" class="form-control" name="returnDate"
-                                            value="{{ $tomorrowString }}"/>
-                                    <select class="form-control" name="returnTime">
-                                        @for($i = 10; $i <= 21; $i++)
-                                            <option value="{{ $i }}">{{ $i }}:00</option>
-                                        @endfor
-                                    </select>
-                                </div>
-                            </div>
+                <div style="margin-bottom: 50px"></div>
 
-                            <div class="form-group">
-                                <div class="col-sm-12">
-                                    <label for="howMany">How Many Vespa?</label>
-                                    <input type="text" class="form-control" id="howMany" name="quantity">
-                                </div>
-                            </div>
+                <form class="date-form well well-lg" action="{{ route('book.index') }}" method="GET">
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger" role="alert">
+                            @foreach ($errors->all() as $error)
+                                {{ $error }} <br>
+                            @endforeach
+                        </div>
+                    @endif
 
-                            <div class="form-group call-to-book">
-                                <div class="col-sm-12">
-                                    <button type="submit"
-                                        class="btn btn-default btn-book col-sm-12">
-                                        Rent Now!
-                                    </button>
-                                </div>
-                            </div>
+                    <div class="form-group input-daterange input-group" id="datepicker">
+                        <div class="col-sm-6">
+                            <label for="pickupDate">Pickup</label>
+                            <input type="text" class="form-control" name="pickupDate" id="pickupDate"
+                                   value="{{ $nowString }}"/>
+                            <select class="form-control" name="pickupTime">
+                                @for($i = 10; $i <= 21; $i++)
+                                    <option value="{{ $i }}">{{ $i }}:00</option>
+                                @endfor
+                            </select>
+                        </div>
 
-                            <div class="clearfix"></div>
-
-                        </form>
+                        <div class="col-sm-6">
+                            <label for="howMany">Return</label>
+                            <input type="text" class="form-control" name="returnDate"
+                                   value="{{ $tomorrowString }}"/>
+                            <select class="form-control" name="returnTime">
+                                @for($i = 10; $i <= 21; $i++)
+                                    <option value="{{ $i }}">{{ $i }}:00</option>
+                                @endfor
+                            </select>
+                        </div>
                     </div>
-                </div><! --/row -->
-            </div> <!-- /container -->
-        </div>
-    </div><! --/headerwrap -->
+
+                    <div class="form-group">
+                        <label for="city">Your City</label>
+                        <select name="city" class="form-control">
+                            <option value="bandung">Bandung</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="howMany">How Many Vespa?</label>
+                        <input type="number" class="form-control" id="howMany" name="quantity" min="1" max="5">
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="form-group call-to-book">
+                        <button type="submit"
+                                class="btn btn-warning btn-book col-xs-12">
+                            Rent Now!
+                        </button>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                </form>
+            </div>
+        </div><! --/row -->
+    </div> <!-- /container -->
 @endsection
 
 @section('content')
@@ -82,19 +90,19 @@
         <div class="row centered mt mb">
             <h1>Explore Bandung With Joy and Style</h1>
 
-            <div class="margin-bottom-50"></div>
+            <div class="mb-50"></div>
 
             <div class="col-lg-8 col-lg-offset-2">
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
             </div>
 
-            <div class="margin-bottom-50"></div>
+            <div class="mb-50"></div>
         </div><! --/row -->
 
         <div class="row centered mt mb">
             <h1>Our Lovely Unit</h1>
 
-            <div class="margin-bottom-50"></div>
+            <div class="mb-50"></div>
 
             <div class="col-lg-8 col-lg-offset-2">
                 <div class="col-lg-6">
@@ -123,7 +131,7 @@
         <div class="row">
             <h1 class="centered">Price List</h1>
 
-            <div class="margin-bottom-50"></div>
+            <div class="mb-50"></div>
 
             <div class="col-sm-10 col-sm-offset-1">
                 <div class="table-responsive">
@@ -142,11 +150,11 @@
                             <td class="vert-align">100.000 IDR</td>
                             <td class="vert-align">130.000 IDR</td>
                             <td>
-                                <p>1 day: 208.000 IDR</p>
-                                <p>2 day: 312.000 IDR</p>
-                                <p>3 day: 416.000 IDR</p>
-                                <p>4 day: 520.000 IDR</p>
-                                <p>5 day: 624.000 IDR</p>
+                                1 day: 208.000 IDR <br>
+                                2 day: 312.000 IDR <br>
+                                3 day: 416.000 IDR <br>
+                                4 day: 520.000 IDR <br>
+                                5 day: 624.000 IDR <br>
                             </td>
                             <td class="vert-align">682.500 IDR</td>
                             <td class="vert-align">2.730.000 IDR</td>
@@ -159,20 +167,7 @@
         </div><! --/row -->
     </div><! --/container -->
 
-    <div class="margin-bottom-50"></div>
-
-    <div id="social">
-        <div class="container">
-            <div class="row centered">
-                <div class="col-lg-3 col-lg-offset-3">
-                    <a href="#"><i class="fa fa-twitter"></i></a>
-                </div>
-                <div class="col-lg-3">
-                    <a href="#"><i class="fa fa-instagram"></i></a>
-                </div>
-            </div><! --/row -->
-        </div><! --/container -->
-    </div><! --/social -->
+    <div class="mb-50"></div>
 @endsection
 
 @section('script-end')
