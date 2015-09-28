@@ -16,7 +16,7 @@ class BookingHistory extends Model
 {
     protected $table = 'booking_history';
 
-    protected $fillable = array('name', 'phone', 'email', 'vespa', 'pickup_time', 'return_time', 'quantity', 'price');
+    protected $fillable = array('name', 'phone', 'email', 'vespa', 'pickup_time', 'return_time', 'quantity', 'price', 'comment');
 
     public function getPickupTimeString()
     {

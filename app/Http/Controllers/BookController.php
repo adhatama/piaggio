@@ -72,6 +72,7 @@ class BookController extends Controller
             'name' => $request->input('name'),
             'phone' => $request->input('phone'),
             'email' => $request->input('email'),
+            'comment' => $request->input('comment'),
             'vespa' => json_encode($vespasName),
             'pickup_time' => $request->input('pickupDate'),
             'return_time' => $request->input('returnDate'),

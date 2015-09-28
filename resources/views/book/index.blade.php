@@ -25,9 +25,9 @@
                 </div>
             @endif
 
-            <p>Pick-up on {{ $pickupDateString }}</p>
-            <p>Return on {{ $returnDateString }} ({{ $diffString }})</p>
-            <p>Price: Rp{{ number_format($price) }} </p>
+            <p class="text-center">Pick-up on {{ $pickupDateString }}</p>
+            <p class="text-center">Return on {{ $returnDateString }} ({{ $diffString }})</p>
+            <p class="text-center">Price: Rp{{ number_format($price) }} </p>
         </div>
 
         <div class="row mt mb">
@@ -44,23 +44,30 @@
 
                     <div class="form-group">
                         <div class="col-sm-12">
-                            <label for="name">Name</label>
+                            <label for="name">Name *</label>
                             <input type="text" class="form-control" id="name"
                                    name="name" value="{{ old('name') }}">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-12">
-                            <label for="phone">Phone</label>
+                            <label for="phone">Phone *</label>
                             <input type="text" class="form-control" id="phone"
                                    name="phone" value="{{ old('phone') }}">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-12">
-                            <label for="email">Email</label>
+                            <label for="email">Email *</label>
                             <input type="text" class="form-control" id="email"
                                    name="email" value="{{ old('email') }}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <label for="comment">Comment</label>
+                            <textarea class="form-control" id="comment"
+                                   name="comment">{{ old('comment') }}</textarea>
                         </div>
                     </div>
 
