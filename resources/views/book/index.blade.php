@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.main-v2')
 
 @section('style-head')
     @parent
@@ -11,19 +11,7 @@
 @endsection
 
 @section('header')
-    <section id="home"></section>
-    <div id="headerwrap-page">
-        <div class="headerwrap-shadow-page">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-lg-offset-3">
-                        <h3>Scooter Rental in Bandung</h3>
-                        <h2>MEET BAGGIO!</h2>
-                    </div>
-                </div><! --/row -->
-            </div> <!-- /container -->
-        </div>
-    </div><! --/headerwrap -->
+    @include('layouts.header-v2')
 @endsection
 
 @section('content')
