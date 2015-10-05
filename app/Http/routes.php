@@ -19,3 +19,4 @@ Route::get('bookingHistory/approve', ['as' => 'bookingHistory.approve', 'uses' =
 Route::resource('bookingHistory', 'BookingHistoryController');
 
 Route::get('thankyou', ['as' => 'book.thankyou', 'uses' => 'BookController@thankyou']);
+Route::get('emailTest', ['as' => 'book.emailTest', 'uses' => 'BookController@emailTest']);

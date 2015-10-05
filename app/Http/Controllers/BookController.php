@@ -16,6 +16,7 @@ use App\Services\DateService;
 use App\Services\PricingService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class BookController extends Controller
 {
@@ -39,6 +40,12 @@ class BookController extends Controller
         $price = $pricingService->getPriceCalculation($pickupDate, $returnDate, $request->input('quantity'));
 
         $quantity = $request->input('quantity');
+
+        Mail::send('emails.approval', ['name'=> 'hehe'], function($message) {
+            $message->sender(env('SENDER_EMAIL'));
+            $message->to('am.adhatama@gmail.com');
+            $message->subject('Hi');
+        });
 
         return view('book.index', compact(
             'pickupDate', 'returnDate',
@@ -86,5 +93,12 @@ class BookController extends Controller
     public function thankyou()
     {
         return view('book.thankyou');
+    }
+
+    public function emailTest()
+    {
+        $data['name'] = 'hehe';
+
+        return view('emails.approval', $data);
     }
 }
