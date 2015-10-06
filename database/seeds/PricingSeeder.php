@@ -14,6 +14,7 @@ class PricingSeeder extends Seeder
     {
         Pricing::truncate();
 
+        Pricing::create(['hour'=>1, 'price'=>30000, 'type'=>'hourly']);
         Pricing::create(['hour'=>12, 'price'=>100000, 'type'=>'halfDay']);
         Pricing::create(['hour'=>24, 'price'=>130000, 'type'=>'fullDay']);
         Pricing::create(['hour'=>48, 'price'=>208000, 'type'=>'additional1']);
