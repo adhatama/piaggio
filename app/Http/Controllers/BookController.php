@@ -41,11 +41,11 @@ class BookController extends Controller
 
         $quantity = $request->input('quantity');
 
-        Mail::send('emails.approval', ['name'=> 'hehe'], function($message) {
-            $message->sender(env('SENDER_EMAIL'));
-            $message->to('am.adhatama@gmail.com');
-            $message->subject('Hi');
-        });
+//        Mail::send('emails.approval', ['name'=> 'hehe'], function($message) {
+//            $message->sender(env('SENDER_EMAIL'));
+//            $message->to('am.adhatama@gmail.com');
+//            $message->subject('Hi');
+//        });
 
         return view('book.index', compact(
             'pickupDate', 'returnDate',
