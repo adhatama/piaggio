@@ -13,10 +13,18 @@
 
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
+// Authentication routes...
+Route::get('login', ['as' => 'login.get', 'uses' => 'Auth\AuthController@getLogin']);
+Route::post('auth/login', ['as' => 'login.post', 'uses' => 'Auth\AuthController@postLogin']);
+Route::get('logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getLogout']);
+
 Route::resource('book', 'BookController');
 
-Route::get('bookingHistory/approve', ['as' => 'bookingHistory.approve', 'uses' => 'BookingHistoryController@approve']);
-Route::resource('bookingHistory', 'BookingHistoryController');
-
 Route::get('thankyou', ['as' => 'book.thankyou', 'uses' => 'BookController@thankyou']);
-Route::get('emailTest', ['as' => 'book.emailTest', 'uses' => 'BookController@emailTest']);
+
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('bookingHistory/approve', ['as' => 'bookingHistory.approve', 'uses' => 'BookingHistoryController@approve']);
+    Route::resource('bookingHistory', 'BookingHistoryController');
+
+    Route::get('emailTest', ['as' => 'book.emailTest', 'uses' => 'BookController@emailTest']);
+});
