@@ -8,6 +8,57 @@
 
     <link href="{{ url('bootstrap-datepicker/css/bootstrap-datepicker3.standalone.min.css') }}" rel="stylesheet">
 
+    <style>
+        .map-container{
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* Ratio 16:9 ( 100%/16*9 = 56.25% ) */
+        }
+        #map {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+@endsection
+
+@section('script-head')
+    <script type="text/javascript">
+        function initMap() {
+            var bandung = new google.maps.LatLng(-6.918020, 107.620584);
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: bandung,
+                zoom: 15,
+                scrollwheel: false
+            });
+
+            var marker = new google.maps.Marker({
+                position: bandung,
+                map: map,
+                draggable: true
+            });
+
+            google.maps.event.addListener(marker, 'dragend', function(event) {
+//                console.log(marker.getPosition().M);
+//                console.log( 'Lat: ' + event.latLng.lat() + ' and Longitude is: ' + event.latLng.lng() );
+                $('input[name="latitude"]').val(marker.getPosition().J);
+                $('input[name="longitude"]').val(marker.getPosition().M);
+            });
+
+            google.maps.event.addListenerOnce(map, 'idle', function(){
+                google.maps.event.trigger(marker, 'dragend');
+            });
+        }
+
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&callback=initMap">
+    </script>
 @endsection
 
 @section('header')
@@ -15,7 +66,7 @@
 @endsection
 
 @section('content')
-    <div class="container">
+    <div class="container" style="width: 100%; height: 100%">
         <div class="row mt">
             @if (count($errors) > 0)
                 <div class="alert alert-danger" role="alert">
@@ -31,6 +82,12 @@
         </div>
 
         <div class="row mt mb">
+            <div class="map-container">
+                <div id="map"></div>
+            </div>
+        </div>
+
+        <div class="row mt mb" style="padding: 50px">
             <div class="col-sm-6">
                 <h3>Please Complete the Booking Form Below</h3>
 
@@ -41,6 +98,8 @@
                     <input type="hidden" name="pickupDate" value="{{ $pickupDate }}">
                     <input type="hidden" name="returnDate" value="{{ $returnDate }}">
                     <input type="hidden" name="quantity" value="{{ $quantity }}">
+                    <input type="hidden" name="latitude">
+                    <input type="hidden" name="longitude">
 
                     <div class="form-group">
                         <div class="col-sm-12">
@@ -104,7 +163,6 @@
                 </div>
             </div>
 
-
             <div class="clearfix"></div>
             <br>
 
@@ -115,6 +173,9 @@
             </form>
         </div>
     </div>
+
+    <div class="clearfix"></div>
+    <div style="margin-bottom: 50px"></div>
 @endsection
 
 @section('script-end')
@@ -128,74 +189,6 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('#datepicker').datepicker();
-
-
-            $('#calendar').fullCalendar({
-                header: {
-                    right: 'prev,next today',
-                    left: 'title'
-                },
-                eventClick: function(calEvent, jsEvent, view) {
-                    alert('Event: ' + calEvent.title);
-                },
-                events: [
-                    {
-                        title: 'All Day Event',
-                        start: '2015-09-01'
-                    },
-                    {
-                        title: 'Long Event',
-                        start: '2015-09-07',
-                        end: '2015-09-10'
-                    },
-                    {
-                        id: 999,
-                        title: 'Repeating Event',
-                        start: '2015-09-09T16:00:00'
-                    },
-                    {
-                        id: 999,
-                        title: 'Repeating Event',
-                        start: '2015-09-16T16:00:00'
-                    },
-                    {
-                        title: 'Conference',
-                        start: '2015-09-11',
-                        end: '2015-09-13'
-                    },
-                    {
-                        title: 'Meeting',
-                        start: '2015-09-12T10:30:00',
-                        end: '2015-09-12T12:30:00'
-                    },
-                    {
-                        title: 'Lunch',
-                        start: '2015-09-12T12:00:00'
-                    },
-                    {
-                        title: 'Meeting',
-                        start: '2015-09-12T14:30:00'
-                    },
-                    {
-                        title: 'Happy Hour',
-                        start: '2015-09-12T17:30:00'
-                    },
-                    {
-                        title: 'Dinner',
-                        start: '2015-02-12T20:00:00'
-                    },
-                    {
-                        title: 'Birthday Party',
-                        start: '2015-02-13T07:00:00'
-                    },
-                    {
-                        title: 'Click for Google',
-                        url: 'http://google.com/',
-                        start: '2015-02-28'
-                    }
-                ]
-            })
-
         });
     </script>
 @endsection

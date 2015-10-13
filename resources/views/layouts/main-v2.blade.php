@@ -61,6 +61,8 @@
 
 @yield('content')
 
+<div class="clearfix"></div>
+
 <div id="footerwrap">
     <div class="container">
         <div class="row centered">

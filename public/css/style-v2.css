@@ -79,6 +79,8 @@ h2.main-title {
     padding-top: 70px;
     padding-bottom: 50px;
     background-color: #D71920;
+    position: relative;
+    bottom: 0;
 }
 
 #footerwrap p {
