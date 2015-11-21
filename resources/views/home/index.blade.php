@@ -1,4 +1,4 @@
-@extends('layouts.main-v2')
+@extends('layouts.main-v3')
 
 @section('style-head')
     @parent

@@ -1,0 +1,63 @@
+/****** HOME *******/
+
+.ui.menu {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.ui.menu .right.menu a {
+    color: white;
+}
+
+.ui.menu .right.menu .item {
+    padding: 30px;
+}
+
+.ui.menu .right.menu .item:hover {
+    background-color: #E74B3D;
+}
+
+.image.header {
+    min-height: 100%;
+    min-width: 1024px;
+
+    width: 100%;
+    height: auto;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -10;
+}
+
+body {
+    position: relative;
+}
+
+.home-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.home-title.column {
+    color: white;
+}
+
+.ui.segment.home-form-container {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.ui.red.button {
+    color: white;
+    background-color: #E74B3D;
+}
+
+/****** HOME *******/
+
+.footer.form-page {
+    position: absolute !important;/* !important for SO snippet priority */
+    bottom: 0;
+    width: 100%;
+    color: white;
+}
