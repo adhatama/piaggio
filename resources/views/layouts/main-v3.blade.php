@@ -58,7 +58,7 @@
 
 <div class="ui vertical center aligned footer segment form-page">
     <div class="ui container">
-        Travel Match 2015. All Rights Reserved
+        Baggio Rent 2015. All Rights Reserved
     </div>
 </div>
 
