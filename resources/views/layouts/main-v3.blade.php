@@ -25,8 +25,7 @@
     <script type="text/javascript" src="{{ url('js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ url('semantic-ui/semantic.min.js') }}"></script>
 
-    <link href='https://fonts.googleapis.com/css?family=Spinnaker' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
 
     @yield('style-head')
 
@@ -37,7 +36,7 @@
 
 <div class="ui large menu">
     <div class="header item">
-        Baggio
+        <img src="{{ url('img/logo_baggio_light.png') }}" class="ui small image" style="margin-left: 50px">
     </div>
     <div class="right menu">
         <a class="item">

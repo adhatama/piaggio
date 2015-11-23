@@ -21,6 +21,6 @@ class HomeController extends Controller
         $nowString = $now->format('d/m/Y');
         $tomorrowString = $tomorrow->format('d/m/Y');
 
-        return view('home.index', compact('nowString', 'tomorrowString'));
+        return view('home.index-v3', compact('nowString', 'tomorrowString'));
     }
 }

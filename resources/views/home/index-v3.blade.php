@@ -7,12 +7,12 @@
 @endsection
 
 @section('content')
-    <img src="{{ url('img/vespa_header_1_cropped.jpg') }}" class="image header">
+    <img src="{{ url('img/bg_3.jpg') }}" class="image header">
 
-    <div class="ui container grid home-container">
-        <div class="center aligned column home-title">
-            <h1 style="margin-top: -10px;">Meet Baggio!</h1>
-            <h2 style="margin-top: -10px;">Scooter Rental in Indonesia</h2>
+    <div class="ui container stackable grid home-container">
+        <div class="center aligned sixteen wide column home-title">
+            <h1 class="ui header"><span>Meet Baggio!</span></h1>
+            <h2 style="margin-top: -10px;" class="ui header"><span>Scooter Rental in Indonesia</span></h2>
             <div class="ui segment home-form-container">
                 <form class="ui form">
                     <div class="fields">

@@ -1,5 +1,9 @@
 /****** HOME *******/
 
+* {
+    font-family: 'Quicksand', sans-serif !important;
+}
+
 .ui.menu {
     background-color: rgba(0, 0, 0, 0.5);
 }
@@ -51,6 +55,26 @@ body {
 .ui.red.button {
     color: white;
     background-color: #E74B3D;
+}
+
+h1.ui.header {
+    font-size: 52px;
+    color: white;
+}
+
+h1.ui.header span {
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+h2.ui.header {
+    font-size: 32px;
+    color: white;
+}
+
+h2.ui.header span {
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 /****** HOME *******/
