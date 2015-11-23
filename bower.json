@@ -12,8 +12,6 @@
     "bower_components"
   ],
   "dependencies": {
-    "angular-resource": "~1.4.8",
-    "moment": "~2.10.6",
-    "angular": "~1.4.8"
+
   }
 }

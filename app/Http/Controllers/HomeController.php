@@ -18,8 +18,8 @@ class HomeController extends Controller
         $now = Carbon::now();
         $tomorrow = Carbon::tomorrow();
 
-        $nowString = $now->format('d/m/Y');
-        $tomorrowString = $tomorrow->format('d/m/Y');
+        $nowString = '';//$now->format('d/m/Y 10:00');
+        $tomorrowString = '';//$tomorrow->format('d/m/Y 10:00');
 
         return view('home.index-v3', compact('nowString', 'tomorrowString'));
     }
