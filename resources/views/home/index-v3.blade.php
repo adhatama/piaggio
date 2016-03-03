@@ -1,12 +1,14 @@
 @extends('layouts.main-v3')
 
 @section('content')
-    <img src="{{ url('img/bg_3.jpg') }}" class="image header image-responsive">
-
+<div class="bg-image" style="background-image:url({{ url("img/bg_3.jpg") }})">
     <div class="ui container stackable grid home-container">
         <div class="center aligned sixteen wide column home-title">
-            <h1 class="ui header"><span>Meet Baggio!</span></h1>
-            <h2 style="margin-top: -10px;" class="ui header"><span>Scooter Rental in Indonesia</span></h2>
+            <div class="heading-wrap">
+            	<h1 class="ui header"><span>Meet Baggio!</span></h1>
+            	<h2 style="margin-top: -10px;" class="ui header"><span>Scooter Rental in Indonesia</span></h2>
+            </div>
+            <button type="button" class="ui red button visible-xs modal-button" data-toggle="modal" data-target="#rentModal">Get Started</button>
             <div class="ui segment home-form-container">
                 <form class="ui form">
                     <div class="fields">
@@ -32,6 +34,24 @@
             </div>
         </div>
     </div>
+</div>
+
+<!-- modal for mobile form -->
+
+<div class="modal fade" id="rentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  	<div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      	<div class="modal-header">
+	        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        	<h4 class="modal-title" id="exampleModalLabel">Rent Scooter</h4>
+	      	</div>
+	      	<div class="modal-body">
+		        
+	      	</div>
+	    </div>
+  	</div>
+</div>
+
 @endsection
 
 @section('script-end')
@@ -55,5 +75,9 @@
                 })
             }
         });
+
+        if ($(window).width() < 767) {
+        	$('.home-form-container').appendTo('.modal-body');
+        }
     </script>
 @endsection

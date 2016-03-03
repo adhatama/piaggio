@@ -4,6 +4,7 @@
     @parent
 
     <link href="{{ url('bootstrap-datepicker/css/bootstrap-datepicker3.standalone.min.css') }}" rel="stylesheet">
+
 @endsection
 
 @section('header')

@@ -12,6 +12,7 @@
 */
 
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
+Route::get('/ok', ['as' => 'book', 'uses' => 'HomeController@book']);
 
 // Authentication routes...
 Route::get('login', ['as' => 'login.get', 'uses' => 'Auth\AuthController@getLogin']);
