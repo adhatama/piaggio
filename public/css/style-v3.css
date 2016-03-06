@@ -599,6 +599,20 @@ h2.info-title {
   .bg-image.book .book-container .order-review.open {
   	top: 80px;
   }
+  .info-title.text-center {
+    text-align: left;
+  }
+  .info-title span {
+    border: 1px solid #ddd;
+    float: right;
+    font-family: "Lato";
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 1;
+    margin: -6px 0 0;
+    padding: 0 8px 5px;
+    text-align: center;
+  }
   .baggio-info {
     padding: 10px 0;
   }

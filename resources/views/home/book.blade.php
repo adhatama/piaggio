@@ -1,7 +1,7 @@
 @extends('layouts.main-v3')
 
 @section('content')
-<div class="order-toggle">
+<div class="order-toggle visible-xs">
 	<i class="in cart icon"></i>
 </div>
 <div class="bg-image book" style="background-image:url({{ url("img/scooter_town_bg.png") }})">
@@ -216,7 +216,7 @@
 	    </div>
 	    <div class="six wide p-l-n column order-review">
 	    	<div class="info-wrap bg-white border b-r">
-	    		<h2 class="info-title text-center">Order Info</h2>
+	    		<h2 class="info-title text-center">Order Info <span class="visible-xs" id="close-order">x</span></h2>
 	    		<div class="order-wrap">
 	    			<div id="pickup-text">
 	    				Pick-Up Time <span class="pull-right">18 November 2017 at 10.00</span>
