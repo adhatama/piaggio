@@ -19,6 +19,7 @@ Route::get('login', ['as' => 'login.get', 'uses' => 'Auth\AuthController@getLogi
 Route::post('auth/login', ['as' => 'login.post', 'uses' => 'Auth\AuthController@postLogin']);
 Route::get('logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getLogout']);
 
+Route::post('book/change_date', ['as' => 'book.change_date', 'uses' => 'BookController@change_date']);
 Route::resource('book', 'BookController');
 
 Route::get('thankyou', ['as' => 'book.thankyou', 'uses' => 'BookController@thankyou']);

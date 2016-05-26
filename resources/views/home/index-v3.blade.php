@@ -10,7 +10,7 @@
             </div>
             <button type="button" class="ui red button visible-xs modal-button" data-toggle="modal" data-target="#rentModal">Get Started</button>
             <div class="ui segment home-form-container">
-                <form class="ui form">
+                <form class="ui form" action="{{ route('book.index') }}">
                     <div class="fields">
                         <div class="four wide field">
                             <select name="city">
@@ -59,7 +59,7 @@
 
     <script type="text/javascript">
         $('#pickupDate').datetimepicker({
-            format: 'd/m/Y H:i',
+            format: 'Y-m-d H:i:s',
             onShow:function( ct ){
                 this.setOptions({
                     maxDate:jQuery('#returnDate').val()?jQuery('#returnDate').val():false
@@ -68,7 +68,7 @@
         });
 
         $('#returnDate').datetimepicker({
-            format: 'd/m/Y H:i',
+            format: 'Y-m-d H:i:s',
             onShow:function( ct ){
                 this.setOptions({
                     minDate:jQuery('#pickupDate').val()?jQuery('#pickupDate').val():false

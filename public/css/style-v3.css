@@ -40,6 +40,10 @@
 body {
     position: relative;
 }
+.myrow {
+  padding: 1em 0 !important;
+  width: 100%;
+}
 
 .visible-xs,
 .visible-sm,
@@ -48,6 +52,9 @@ body {
   display: none !important;
 }
 
+.m-l-md {
+  margin-left: 10px;
+}
 .home-container {
     position: absolute;
     top: 50%;
@@ -280,6 +287,33 @@ h2.ui.header span {
 .ui.form .field > .selection.dropdown {
   min-width: 12em;
   width: 100%;
+}
+.vespa-checkbox {
+    margin: 0 4px;
+    border-radius:4px;
+    overflow:auto;
+    float:left;
+}
+
+
+.vespa-checkbox label {
+    float:left;
+}
+
+/*.vespa-checkbox label span {
+    text-align:center;
+    padding:3px 0px;
+    display:block;
+}*/
+
+.vespa-checkbox label input {
+    position:absolute;
+    top:-20px;
+    opacity: 0;
+}
+
+.vespa-checkbox input:checked + span {
+    /*color:#fff;*/
 }
 .map-holder .form-control {
   width: 100%;

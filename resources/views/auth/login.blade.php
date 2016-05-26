@@ -28,7 +28,7 @@
                             <input type="email" name="email" value="{{ old('email') }}" class="form-control" id="email" placeholder="Email">
                         </div>
                     </div>
-
+					<input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
                         <div class="col-sm-6">
                             <input type="password" name="password" value="{{ old('password') }}" class="form-control" id="password" placeholder="Password">

@@ -10,6 +10,7 @@ namespace App\Models;
 
 
 use App\Services\DateService;
+use App\Models\Vespa;
 use Illuminate\Database\Eloquent\Model;
 
 class BookingHistory extends Model
@@ -44,6 +45,15 @@ class BookingHistory extends Model
 
     public function getVespaString()
     {
-        return implode('<br>', json_decode($this->vespa));
+    	$vespasName = [];
+    	$vespas = json_decode($this->vespa,true);
+    	foreach($vespas as $vespa) {
+    	    $v = Vespa::find($vespa['code']);
+    	    for ($i=0; $i < $vespa['amount']; $i++) { 
+			    array_push($vespasName, $v->name);
+    	    }
+    	}
+        return implode('<br>', $vespasName);
+        // return $this->vespa;
     }
 }

@@ -22,15 +22,17 @@ class BookController extends Controller
 {
     public function index(BookRequest $request, PricingService $pricingService, DateService $dateService)
     {
+    	$oriPickupDate = $request->input('pickupDate');
+    	$oriReturnDate = $request->input('returnDate');
         $pickupDate = $dateService->getCarbonDateFromDateString(
-            $request->input('pickupDate') . ' ' . $request->input('pickupTime') . ':00:00',
-            'd/m/Y H:i:s'
+            $request->input('pickupDate') ,
+            'Y-m-d H:i:s'
         );
         $pickupDateString = $pickupDate->format('l, jS \\of F Y h:i A');
 
         $returnDate = $dateService->getCarbonDateFromDateString(
-            $request->input('returnDate') . ' ' . $request->input('returnTime') . ':00:00',
-            'd/m/Y H:i:s'
+            $request->input('returnDate'),
+            'Y-m-d H:i:s'
         );
         $returnDateString = $returnDate->format('l, jS \\of F Y h:i A');
 
@@ -40,38 +42,54 @@ class BookController extends Controller
         $price = $pricingService->getPriceCalculation($pickupDate, $returnDate, $request->input('quantity'));
 
         $quantity = $request->input('quantity');
+        $city = $request->input('city');
+
+        $vespa = Vespa::where('status', '0')->get();
+        $avesp = 0;
+        foreach ($vespa as $vesp) {
+        	$avesp = $avesp+$vesp->stock;
+        }
 
 //        Mail::send('emails.approval', ['name'=> 'hehe'], function($message) {
 //            $message->sender(env('SENDER_EMAIL'));
 //            $message->to('am.adhatama@gmail.com');
 //            $message->subject('Hi');
 //        });
+        // dd($avesp);
 
-        return view('book.index', compact(
-            'pickupDate', 'returnDate',
+        return view('book.book', compact(
+            'pickupDate', 'returnDate','oriPickupDate', 'oriReturnDate',
             'pickupDateString', 'returnDateString',
-            'diffString', 'price', 'quantity'));
+            'diffString', 'city', 'price', 'quantity', 'vespa', 'avesp'));
+
+        // dd($avesp);
+
     }
 
-    public function store(BookStoreRequest $request, DateService $dateService, PricingService $pricingService)
+    public function store(Request $request, DateService $dateService, PricingService $pricingService)
     {
-//        dd($request->input());
+    	// $vesp = json_decode($request->input('vespa'),true);
+       // dd($request->input());
+
         $pickupDate = $dateService->getCarbonDateFromDateString($request->input('pickupDate'), 'Y-m-d H:i:s');
-//        dd($pickupDate);
+       // dd($pickupDate);
 
         $returnDate = $dateService->getCarbonDateFromDateString($request->input('returnDate'), 'Y-m-d H:i:s');
 
         // Calculate Price
         $price = $pricingService->getPriceCalculation($pickupDate, $returnDate, $request->input('quantity'));
 
-        $vespas = $request->input('vespa');
+        $vespas = json_decode($request->input('vespa'),true);
         $vespasName = [];
 
         foreach($vespas as $vespa) {
-            $v = Vespa::find($vespa);
-            $v->status = 1;
+            $v = Vespa::find($vespa['code']);
+            $initStock = $v->stock;
+            $stock = $initStock-$vespa['amount'];
+            $v->stock = $stock;
             $v->save();
 
+        	// dd($vespa['code']);
             array_push($vespasName, $v->name);
         }
 
@@ -80,7 +98,7 @@ class BookController extends Controller
             'phone' => $request->input('phone'),
             'email' => $request->input('email'),
             'comment' => $request->input('comment'),
-            'vespa' => json_encode($vespasName),
+            'vespa' => $request->input('vespa'),
             'pickup_time' => $request->input('pickupDate'),
             'return_time' => $request->input('returnDate'),
             'quantity' => $request->input('quantity'),
@@ -100,5 +118,15 @@ class BookController extends Controller
         $data['name'] = 'hehe';
 
         return view('emails.approval', $data);
+    }
+
+    public function change_date(Request $request, DateService $dateService) {
+    	$newDate = $request->input('date');
+    	$convertDate = $dateService->getCarbonDateFromDateString(
+    	    $request->input('date') ,
+    	    'Y-m-d H:i:s'
+    	);
+    	$convertDateString = $convertDate->format('l, jS \\of F Y h:i A');
+    	return $convertDateString;
     }
 }
